@@ -3,7 +3,6 @@ import { Head, Link } from '@inertiajs/vue3';
 import { dashboard, login } from '@/routes';
 /* @chisel-registration */
 import { register } from '@/routes';
-import { preProcessFile } from 'typescript';
 /* @end-chisel-registration */
 
 </script>
