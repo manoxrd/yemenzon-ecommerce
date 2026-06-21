@@ -3,6 +3,10 @@ import { Head } from '@inertiajs/vue3';
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
 import { dashboard } from '@/routes';
 
+// const props = defineProps({
+//   products: Array
+// });
+
 defineOptions({
     layout: {
         breadcrumbs: [
