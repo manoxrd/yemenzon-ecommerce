@@ -6,13 +6,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::inertia('/', 'Welcome')->name('home');
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    // Route::inertia('dashboard', 'Dashboard')->name('dashboard');
-    Route::get('dashboard', [ProductController::class, 'index'])->name('dashboard');
-});
-
-// Route::middleware(['auth', UserHasRole::class.':admin,employee'])->group(function () {
-//     Route::inertia('dashboard', 'Dashboard')->name('dashboard');
+// Route::middleware(['auth', 'verified'])->group(function () {
+//     // Route::inertia('dashboard', 'Dashboard')->name('dashboard');
+//     Route::get('dashboard', [ProductController::class, 'index'])->name('dashboard');
 // });
 
-require __DIR__.'/settings.php';
+Route::middleware(['auth', UserHasRole::class . ':admin,employee'])->group(function () {
+
+  Route::inertia('dashboard', 'Dashboard')->name('dashboard');
+
+  Route::get('products', [ProductController::class, 'index'])->name('products.index');
+});
+
+
+require __DIR__ . '/settings.php';

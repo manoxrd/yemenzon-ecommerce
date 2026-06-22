@@ -14,7 +14,7 @@ class ProductController extends Controller
     public function index()
     {
       $products = Product::with('user')->get();
-      return Inertia::render('Dashboard', [
+      return Inertia::render('Products/Index', [
         'products' => $products,
       ]);
     }
