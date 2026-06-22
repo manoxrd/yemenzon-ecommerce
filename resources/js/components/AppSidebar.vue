@@ -5,6 +5,8 @@ import AppLogo from '@/components/AppLogo.vue';
 import NavFooter from '@/components/NavFooter.vue';
 import NavMain from '@/components/NavMain.vue';
 import NavUser from '@/components/NavUser.vue';
+import { index } from '@/routes/products';
+
 import {
     Sidebar,
     SidebarContent,
@@ -25,7 +27,7 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Products',
-        href: '/products',
+        href: index(),
         icon: Boxes,
     },
 ];
