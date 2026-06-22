@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\UserRole;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -18,7 +19,7 @@ class ProductSeeder extends Seeder
         'name' => 'Admin',
         'email' => 'admin@yemenzon.com',
         'password' => bcrypt('mansour123321'),
-        'role' => 'customer',
+        'role' => UserRole::Admin->value,
       ]);
       
       Product::factory(50)->create([
