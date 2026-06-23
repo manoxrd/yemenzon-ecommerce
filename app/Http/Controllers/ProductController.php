@@ -13,7 +13,17 @@ class ProductController extends Controller
      */
     public function index()
     {
-      $products = Product::with('user')->get();
+      $products = Product::where('is_active', true)->get();
+
+      return Inertia::render('products/Index', [
+        'products' => $products
+      ]);
+    }
+
+    public function adminIndex()
+    {
+      $products = Product::all();
+
       return Inertia::render('admin/products/Index', [
         'products' => $products,
       ]);

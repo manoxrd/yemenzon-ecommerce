@@ -11,13 +11,15 @@ Route::inertia('/', 'Welcome')->name('home');
 //     Route::get('dashboard', [ProductController::class, 'index'])->name('dashboard');
 // });
 
-Route::middleware(['auth', UserHasRole::class . ':admin,employee'])->group(function () {
+Route::middleware(['auth', UserHasRole::class . ':admin,employee'])->prefix('admin')->name('admin.')->group(function () {
 
   Route::inertia('dashboard', 'admin/Dashboard')->name('dashboard');
 
-  Route::get('products', [ProductController::class, 'index'])->name('products.index');
-
+  Route::get('products', [ProductController::class, 'adminIndex'])->name('products.index');
+  
 });
+
+Route::get('products', [ProductController::class, 'index'])->name('products.index');
 
 Route::get('products/{product:slug}', [ProductController::class, 'show'])->name('products.show');
 

@@ -104,7 +104,7 @@ defineProps<{
 
   <Head :title="product.name" />
 
-  <div class="max-w-7xl mx-auto px-5 md:px-10 xl:px-12 py-16 flex flex-col gap-y-18 w-full">
+  <div class="max-w-7xl mx-auto px-5 md:px-10 xl:px-12 py-6 sm:py-16 flex flex-col gap-y-18 w-full">
 
     <section class="flex flex-col sm:flex-row gap-x-8 lg:gap-x-12">
       <div class="flex flex-col gap-y-4 sm:w-1/2">
