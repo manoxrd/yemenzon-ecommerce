@@ -13,10 +13,12 @@ Route::inertia('/', 'Welcome')->name('home');
 
 Route::middleware(['auth', UserHasRole::class . ':admin,employee'])->group(function () {
 
-  Route::inertia('dashboard', 'Dashboard')->name('dashboard');
+  Route::inertia('dashboard', 'admin/Dashboard')->name('dashboard');
 
   Route::get('products', [ProductController::class, 'index'])->name('products.index');
+
 });
 
+Route::get('products/{product:slug}', [ProductController::class, 'show'])->name('products.show');
 
 require __DIR__ . '/settings.php';

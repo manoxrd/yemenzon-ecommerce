@@ -2,7 +2,7 @@
 type Props = {
     title: string;
     description?: string;
-    variant?: 'default' | 'small';
+    variant?: 'large' | 'default' | 'small';
 };
 
 withDefaults(defineProps<Props>(), {
@@ -11,12 +11,15 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-    <header :class="variant === 'small' ? '' : 'mb-8 space-y-0.5'">
+    <header :class="variant === 'small' || variant === 'large' ? '' : 'mb-8 space-y-0.5'">
         <h2
             :class="
                 variant === 'small'
                     ? 'mb-0.5 text-base font-medium'
+                    : variant === 'large' 
+                    ? 'text-2xl font-semibold tracking-tight' 
                     : 'text-xl font-semibold tracking-tight'
+
             "
         >
             {{ title }}

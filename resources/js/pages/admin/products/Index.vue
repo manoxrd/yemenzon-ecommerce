@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
 import { index } from '@/routes/products';
+import { show } from '@/routes/products';
 import Input from '@/components/ui/input/Input.vue';
 import Label from '@/components/ui/label/Label.vue';
 import InputError from '@/components/InputError.vue';
@@ -88,7 +89,9 @@ defineProps<{
                 />
               </td>
               <td class="px-4 py-3 font-medium text-gray-900 dark:text-gray-100">
-                {{ product.name }}
+                <Link :href="show(product.slug)">
+                  {{ product.name }}
+                </Link>
               </td>
               <td class="px-4 py-3 text-gray-500 dark:text-gray-400">
                 Electronics

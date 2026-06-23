@@ -14,7 +14,7 @@ class ProductController extends Controller
     public function index()
     {
       $products = Product::with('user')->get();
-      return Inertia::render('Products/Index', [
+      return Inertia::render('admin/products/Index', [
         'products' => $products,
       ]);
     }
@@ -40,7 +40,9 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+      return Inertia::render('products/Show', [
+        'product' => $product,
+      ]);
     }
 
     /**
@@ -48,7 +50,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+      
     }
 
     /**
