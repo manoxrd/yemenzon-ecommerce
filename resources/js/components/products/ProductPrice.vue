@@ -1,6 +1,4 @@
-<script setup lang='ts'>
-
-</script>
+<script setup lang="ts"></script>
 <!--
  #f7ece9
  #587aac 

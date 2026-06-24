@@ -8,19 +8,19 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserHasRole
 {
-  /**
-   * Handle an incoming request.
-   *
-   * @param  Closure(Request): (Response)  $next
-   */
-  public function handle(Request $request, Closure $next, string ...$roles): Response
-  {
-    $user = $request->user();
-    
-    if(!in_array($user->role->value, $roles)) {
-      return redirect('/');
-    }
+    /**
+     * Handle an incoming request.
+     *
+     * @param  Closure(Request): (Response)  $next
+     */
+    public function handle(Request $request, Closure $next, string ...$roles): Response
+    {
+        $user = $request->user();
 
-    return $next($request);
-  }
+        if (! in_array($user->role->value, $roles)) {
+            return redirect('/');
+        }
+
+        return $next($request);
+    }
 }

@@ -13,20 +13,20 @@ class ProductController extends Controller
      */
     public function index()
     {
-      $products = Product::where('is_active', true)->get();
+        $products = Product::where('is_active', true)->get();
 
-      return Inertia::render('products/Index', [
-        'products' => $products
-      ]);
+        return Inertia::render('products/Index', [
+            'products' => $products,
+        ]);
     }
 
     public function adminIndex()
     {
-      $products = Product::all();
+        $products = Product::all();
 
-      return Inertia::render('admin/products/Index', [
-        'products' => $products,
-      ]);
+        return Inertia::render('admin/products/Index', [
+            'products' => $products,
+        ]);
     }
 
     /**
@@ -50,18 +50,15 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-      return Inertia::render('products/Show', [
-        'product' => $product,
-      ]);
+        return Inertia::render('products/Show', [
+            'product' => $product,
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product)
-    {
-      
-    }
+    public function edit(Product $product) {}
 
     /**
      * Update the specified resource in storage.

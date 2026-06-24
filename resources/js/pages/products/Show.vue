@@ -1,15 +1,15 @@
-<script setup lang='ts'>
+<script setup lang="ts">
 import { Head } from '@inertiajs/vue3';
-import type { Product } from '@/types';
-import ProductInfo from '@/components/products/ProductInfo.vue';
 import Heading from '@/components/Heading.vue';
+import ProductCard from '@/components/products/ProductCard.vue';
+import ProductInfo from '@/components/products/ProductInfo.vue';
+import StarReview from '@/components/products/StarReview.vue';
 import Select from '@/components/ui/select/Select.vue';
 import SelectContent from '@/components/ui/select/SelectContent.vue';
+import SelectItem from '@/components/ui/select/SelectItem.vue';
 import SelectTrigger from '@/components/ui/select/SelectTrigger.vue';
 import SelectValue from '@/components/ui/select/SelectValue.vue';
-import SelectItem from '@/components/ui/select/SelectItem.vue';
-import StarReview from '@/components/products/StarReview.vue';
-import ProductCard from '@/components/products/ProductCard.vue';
+import type { Product } from '@/types';
 
 const reviews = [
   {
@@ -19,7 +19,8 @@ const reviews = [
     date: 'October 12, 2025',
     rating: 5,
     title: 'Perfect!',
-    content: 'Absolutely love this! The build quality is fantastic and it arrived much faster than expected. Worth every penny.'
+    content:
+      'Absolutely love this! The build quality is fantastic and it arrived much faster than expected. Worth every penny.',
   },
   {
     id: 2,
@@ -28,7 +29,8 @@ const reviews = [
     date: 'September 28, 2025',
     rating: 4,
     title: 'Good, but minor packaging issue',
-    content: 'Great product overall. It does exactly what it says it will do. Giving it 4 stars because the packaging was a bit damaged, but the item itself is pristine.'
+    content:
+      'Great product overall. It does exactly what it says it will do. Giving it 4 stars because the packaging was a bit damaged, but the item itself is pristine.',
   },
   {
     id: 3,
@@ -37,7 +39,8 @@ const reviews = [
     date: 'September 15, 2025',
     rating: 5,
     title: 'Exceeded my expectations',
-    content: 'I was skeptical at first, but this completely exceeded my expectations. The design is sleek and modern.'
+    content:
+      'I was skeptical at first, but this completely exceeded my expectations. The design is sleek and modern.',
   },
   {
     id: 4,
@@ -46,8 +49,9 @@ const reviews = [
     date: 'August 02, 2025',
     rating: 5,
     title: 'Amazing gift!',
-    content: 'Bought this as a gift for my brother and he uses it every single day. Very happy with this purchase!'
-  }
+    content:
+      'Bought this as a gift for my brother and he uses it every single day. Very happy with this purchase!',
+  },
 ];
 
 const relatedProducts = [
@@ -55,71 +59,76 @@ const relatedProducts = [
     id: 1,
     name: 'Wireless Noise-Cancelling Headphones',
     category: 'Electronics',
-    description: 'Immerse yourself in pure sound with our industry-leading noise cancellation technology.',
+    description:
+      'Immerse yourself in pure sound with our industry-leading noise cancellation technology.',
     time: 'Ends in 2 days',
     price: '$299.00',
-    image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&q=80',
-    rating: 4.8
+    image:
+      'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&q=80',
+    rating: 4.8,
   },
   {
     id: 2,
     name: 'Smart Fitness Watch Series 5',
     category: 'Wearables',
-    description: 'Track your health, receive notifications, and stay active with built-in GPS.',
+    description:
+      'Track your health, receive notifications, and stay active with built-in GPS.',
     time: 'Ends in 5 hours',
     price: '$199.99',
-    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&q=80',
-    rating: 4.5
+    image:
+      'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&q=80',
+    rating: 4.5,
   },
   {
     id: 3,
     name: 'Ultra-Slim Laptop Pro',
     category: 'Computers',
-    description: 'Powerful performance packed into a beautifully thin, lightweight aluminum chassis.',
+    description:
+      'Powerful performance packed into a beautifully thin, lightweight aluminum chassis.',
     time: 'Limited Stock',
     price: '$1,299.00',
-    image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500&q=80',
-    rating: 4.9
+    image:
+      'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500&q=80',
+    rating: 4.9,
   },
   {
     id: 4,
     name: 'Professional DSLR Camera',
     category: 'Photography',
-    description: 'Capture stunningly detailed photos and 4K video with our flagship camera.',
+    description:
+      'Capture stunningly detailed photos and 4K video with our flagship camera.',
     time: 'Sale ends soon',
     price: '$899.00',
-    image: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=500&q=80',
-    rating: 4.7
-  }
+    image:
+      'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=500&q=80',
+    rating: 4.7,
+  },
 ];
 
 defineProps<{
-  product: Product
+  product: Product;
 }>();
-
-
 </script>
 
 <template>
-
   <Head :title="product.name" />
 
-  <div class="max-w-7xl mx-auto px-5 md:px-10 xl:px-12 py-6 sm:py-16 flex flex-col gap-y-18 w-full">
-
-    <section class="flex flex-col sm:flex-row gap-x-8 lg:gap-x-12">
+  <div
+    class="mx-auto flex w-full max-w-7xl flex-col gap-y-18 px-5 py-6 sm:py-16 md:px-10 xl:px-12"
+  >
+    <section class="flex flex-col gap-x-8 sm:flex-row lg:gap-x-12">
       <div class="flex flex-col gap-y-4 sm:w-1/2">
         <img v-if="product.thumbnail_url" src="" alt="" />
-        <div v-else class="bg-gray-500 h-110 w-full rounded-4xl"></div>
+        <div v-else class="h-110 w-full rounded-4xl bg-gray-500"></div>
       </div>
 
       <ProductInfo :product="product" />
-
     </section>
 
     <section>
       <Heading variant="large" class="font-inter" title="Reviews" />
 
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <span>Showing 1-4 of 24 results</span>
 
         <div>
@@ -137,23 +146,31 @@ defineProps<{
       </div>
 
       <div class="mt-8 flex flex-col gap-y-6">
-        <div v-for="review in reviews" :key="review.id"
-          class="flex flex-col gap-y-3 pb-6 border-b border-gray-100 last:border-0 dark:border-gray-800">
+        <div
+          v-for="review in reviews"
+          :key="review.id"
+          class="flex flex-col gap-y-3 border-b border-gray-100 pb-6 last:border-0 dark:border-gray-800"
+        >
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-x-4">
-              <img :src="review.avatar" :alt="review.name"
-                class="w-10 h-10 rounded-full object-cover bg-gray-200 dark:bg-gray-700" />
+              <img
+                :src="review.avatar"
+                :alt="review.name"
+                class="h-10 w-10 rounded-full bg-gray-200 object-cover dark:bg-gray-700"
+              />
               <div class="flex flex-col">
-                <span class="font-semibold text-sm">{{ review.name }}</span>
+                <span class="text-sm font-semibold">{{ review.name }}</span>
                 <span class="text-xs text-gray-500">{{ review.date }}</span>
               </div>
             </div>
           </div>
           <div class="flex flex-col gap-y-2">
-              <span class="font-bold text-lg">{{ review.title }}</span>
-              <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-1">
-                {{ review.content }}
-              </p>
+            <span class="text-lg font-bold">{{ review.title }}</span>
+            <p
+              class="mb-1 text-sm leading-relaxed text-gray-600 dark:text-gray-400"
+            >
+              {{ review.content }}
+            </p>
 
             <div class="flex gap-x-0.5">
               <StarReview :size="20" />
@@ -165,11 +182,10 @@ defineProps<{
 
     <section>
       <Heading variant="large" class="font-inter" title="You might also like" />
-      
-      <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
         <ProductCard :relatedProducts="relatedProducts" />
       </div>
     </section>
-
   </div>
 </template>

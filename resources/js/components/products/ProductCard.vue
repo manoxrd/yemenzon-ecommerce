@@ -1,41 +1,57 @@
-<script setup lang='ts'>
-
+<script setup lang="ts">
 defineProps<{
-  relatedProducts: any[]
-}>()
-
+  relatedProducts: any[];
+}>();
 </script>
 
 <template>
-  <div v-for="item in relatedProducts" :key="item.id"
-    class="flex flex-col group border border-gray-200 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 bg-white dark:bg-gray-900 dark:border-gray-800">
+  <div
+    v-for="item in relatedProducts"
+    :key="item.id"
+    class="group flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white transition-all duration-300 hover:shadow-xl dark:border-gray-800 dark:bg-gray-900"
+  >
     <!-- Image -->
     <div class="relative h-56 overflow-hidden bg-gray-100 dark:bg-gray-800">
-      <img :src="item.image" :alt="item.name"
-        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
+      <img
+        :src="item.image"
+        :alt="item.name"
+        class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+      />
       <div
-        class="absolute top-3 left-3 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs font-bold text-gray-900 dark:text-white shadow-sm tracking-wide">
+        class="absolute top-3 left-3 rounded-full bg-white/90 px-3 py-1.5 text-xs font-bold tracking-wide text-gray-900 shadow-sm backdrop-blur-sm dark:bg-gray-900/90 dark:text-white"
+      >
         {{ item.time }}
       </div>
     </div>
 
     <!-- Content -->
-    <div class="p-5 flex flex-col grow">
-      <span class="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-1.5">{{ item.category
-        }}</span>
-      <h3 class="font-bold text-lg leading-tight mb-2 text-gray-900 dark:text-white line-clamp-1">{{ item.name }}</h3>
+    <div class="flex grow flex-col p-5">
+      <span
+        class="mb-1.5 text-xs font-bold tracking-widest text-gray-400 uppercase dark:text-gray-500"
+        >{{ item.category }}</span
+      >
+      <h3
+        class="mb-2 line-clamp-1 text-lg leading-tight font-bold text-gray-900 dark:text-white"
+      >
+        {{ item.name }}
+      </h3>
 
-      <p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-2 mb-5 grow">
+      <p
+        class="mb-5 line-clamp-2 grow text-sm text-gray-500 dark:text-gray-400"
+      >
         {{ item.description }}
       </p>
 
-      <div class="flex items-center justify-between mb-5">
-        <span class="font-black text-xl text-gray-900 dark:text-white">{{ item.price }}</span>
+      <div class="mb-5 flex items-center justify-between">
+        <span class="text-xl font-black text-gray-900 dark:text-white">{{
+          item.price
+        }}</span>
         <StarReview variant="mini" :size="14" />
       </div>
 
       <AddToCart
-        class="w-full rounded-xl bg-black hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200" />
+        class="w-full rounded-xl bg-black hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
+      />
     </div>
   </div>
 </template>

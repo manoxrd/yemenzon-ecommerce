@@ -1,25 +1,33 @@
-<script setup lang='ts'>
+<script setup lang="ts">
 import { Star } from '@lucide/vue';
 
 defineProps({
   variant: String,
-  size: Number
-})
-
+  size: Number,
+});
 </script>
 
 <template>
-  <div class="flex gap-x-1 font-bold items-center">
+  <div class="flex items-center gap-x-1 font-bold">
     <div class="flex">
-      <Star v-if="variant === 'mini'" :size="size ?? 18" fill="#E8A736" stroke-width="0" />
+      <Star
+        v-if="variant === 'mini'"
+        :size="size ?? 18"
+        fill="#E8A736"
+        stroke-width="0"
+      />
 
-      <Star v-else :size="size ?? 18" fill="#E8A736" stroke-width="0" v-for="index in 5" :key="index" />
+      <Star
+        v-else
+        :size="size ?? 18"
+        fill="#E8A736"
+        stroke-width="0"
+        v-for="index in 5"
+        :key="index"
+      />
     </div>
-
 
     <span class="font-normal">4.9</span>
     <span v-if="variant === 'product'">(240 Reviews)</span>
-
-
   </div>
 </template>
