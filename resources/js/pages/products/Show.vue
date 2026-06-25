@@ -3,7 +3,7 @@ import { Head } from '@inertiajs/vue3';
 import Heading from '@/components/Heading.vue';
 import ProductCard from '@/components/products/ProductCard.vue';
 import ProductInfo from '@/components/products/ProductInfo.vue';
-import StarReview from '@/components/products/StarReview.vue';
+import StarReview from '@/components/StarReview.vue';
 import Select from '@/components/ui/select/Select.vue';
 import SelectContent from '@/components/ui/select/SelectContent.vue';
 import SelectItem from '@/components/ui/select/SelectItem.vue';

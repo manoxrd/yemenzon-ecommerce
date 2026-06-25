@@ -2,11 +2,11 @@
 import { ref } from 'vue';
 import type { Product } from '@/types/product.js';
 import Heading from '../Heading.vue';
+import StarReview from '../StarReview.vue';
 import AddToCart from './AddToCart.vue';
 import ProductDescription from './ProductDescription.vue';
 import ProductPrice from './ProductPrice.vue';
 import ProductQuantity from './ProductQuantity.vue';
-import StarReview from './StarReview.vue';
 
 defineProps<{
   product: Product;

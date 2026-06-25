@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import StarReview from '../StarReview.vue';
+import AddToCart from './AddToCart.vue';
+
 defineProps<{
   relatedProducts: any[];
 }>();
