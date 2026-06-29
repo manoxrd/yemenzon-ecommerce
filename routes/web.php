@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\ProductController;
 use App\Http\Middleware\UserHasRole;
 use Illuminate\Support\Facades\Route;
@@ -15,7 +16,7 @@ Route::middleware(['auth', UserHasRole::class.':admin,employee'])->prefix('admin
 
     Route::inertia('dashboard', 'admin/Dashboard')->name('dashboard');
 
-    Route::get('products', [ProductController::class, 'adminIndex'])->name('products.index');
+    Route::get('products', [AdminProductController::class, 'index'])->name('products.index');
 
 });
 
