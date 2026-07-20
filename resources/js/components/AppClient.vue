@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Link, usePage } from '@inertiajs/vue3';
-import { Home, LayoutGrid, Menu, Search } from '@lucide/vue';
+import { Home, LayoutGrid, Menu, Search, Store } from '@lucide/vue';
 import { computed } from 'vue';
 import AppLogo from '@/components/AppLogo.vue';
 import AppLogoIcon from '@/components/AppLogoIcon.vue';
@@ -37,6 +37,7 @@ import { getInitials } from '@/composables/useInitials';
 import { toUrl } from '@/lib/utils';
 import { home } from '@/routes';
 import { dashboard } from '@/routes/admin';
+import { index } from '@/routes/products';
 import type { NavItem } from '@/types';
 
 const page = usePage();
@@ -62,6 +63,11 @@ const mainNavItems: NavItem[] = [
     href: home(),
     icon: Home,
   },
+  {
+    title: 'Catalog',
+    href: index(),
+    icon: Store,
+  }
 ];
 
 const rightNavItems: NavItem[] = [];

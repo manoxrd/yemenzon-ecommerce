@@ -1,9 +1,8 @@
 <script setup lang='ts'>
-import { Link } from '@inertiajs/vue3';
 import { Star } from '@lucide/vue';
 import { ref } from 'vue';
+import type { Category } from '@/types/category.js';
 import Checkbox from '../ui/checkbox/Checkbox.vue';
-// import { Filter } from '@lucide/vue';
 import Sidebar from '../ui/sidebar/Sidebar.vue';
 import SidebarContent from '../ui/sidebar/SidebarContent.vue';
 import SidebarGroup from '../ui/sidebar/SidebarGroup.vue';
@@ -15,9 +14,39 @@ import SidebarMenuItem from '../ui/sidebar/SidebarMenuItem.vue';
 import { useSidebar } from '../ui/sidebar/utils.js';
 import Slider from '../ui/slider/Slider.vue';
 
+defineProps<{
+  categories: Category[];
+  currentCategory: string;
+}>();
+
 const { isMobile } = useSidebar();
 
 const priceRange = ref([25, 100]);
+
+const emit = defineEmits(['selectCategory']);
+
+// const categories = [
+//   {
+//     id: 1,
+//     name: 'Electronics'
+//   },
+//   {
+//     id: 2, 
+//     name: 'Farming'
+//   },
+//   {
+//     id: 3,
+//     name: 'Gold'
+//   },
+//   {
+//     id: 4,
+//     name: 'Sports'
+//   },
+//   {
+//     id: 5,
+//     name: 'Clothes'
+//   },
+// ]
 
 </script>
 
@@ -35,11 +64,12 @@ const priceRange = ref([25, 100]);
       <SidebarGroup>
         <SidebarGroupLabel>Category</SidebarGroupLabel>
         <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton>
-              <Link href="/">
-                <span>home</span>
-              </Link>
+          <!--  -->
+          <SidebarMenuItem v-for="category in categories" :key="category.id">
+            <SidebarMenuButton :class="currentCategory === category.name ? 'bg-sidebar-accent' : ''" @click="emit('selectCategory', category)">
+
+              <span>{{ category.name }}</span>
+
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
@@ -66,13 +96,7 @@ const priceRange = ref([25, 100]);
             <span>${{ priceRange[0] }}</span>
             <span>${{ priceRange[1] }}</span>
           </div>
-          <Slider
-          v-model="priceRange"
-          :min="25"
-          :max="100"
-          :step="1"
-          class="mx-auto w-full max-w-xs"
-          />
+          <Slider v-model="priceRange" :min="25" :max="100" :step="1" class="mx-auto w-full max-w-xs" />
         </div>
       </SidebarGroup>
     </SidebarContent>

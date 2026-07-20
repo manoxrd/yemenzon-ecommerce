@@ -3,13 +3,13 @@ import StarReview from '../StarReview.vue';
 import AddToCart from './AddToCart.vue';
 
 defineProps<{
-  relatedProducts: any[];
+  products: any[];
 }>();
 </script>
 
 <template>
   <div
-    v-for="item in relatedProducts"
+    v-for="item in products"
     :key="item.id"
     class="group flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white transition-all duration-300 hover:shadow-xl dark:border-gray-800 dark:bg-gray-900"
   >

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -13,15 +14,20 @@ class ProductController extends Controller
    */
   public function index(Request $request)
   {
-    $products = Product::where('is_active', true)
-    ->get();
-
+    // $products = Product::when($request->category, fn($query, $category) => $query->where('category_id', $category))->get();
     
-    // when($request->category, fn($query, $category) => $query->where('category_id', $category))->
+    // dd($request->category);
 
+    $category = Category::where('name', $request->category)->first();
+    
+    $products = Product::where('is_active', true)->when($category?->id, fn($query, $category) => $query->where('category_id', $category))->get();
+    
+    $categories = Category::all();
 
     return Inertia::render('products/Index', [
       'products' => $products,
+      'category' => $category,
+      'categories' => $categories
     ]);
   }
 

@@ -184,7 +184,7 @@ defineProps<{
       <Heading variant="large" class="font-inter" title="You might also like" />
 
       <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        <ProductCard :relatedProducts="relatedProducts" />
+        <ProductCard :products="relatedProducts" />
       </div>
     </section>
   </div>
