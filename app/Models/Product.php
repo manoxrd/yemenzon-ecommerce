@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Number;
 
 class Product extends Model
@@ -14,7 +15,7 @@ class Product extends Model
   /** @use HasFactory<ProductFactory> */
   use HasFactory;
 
-  protected $appends = ['formatted_price']; 
+  protected $appends = ['formatted_price'];
 
   public function user(): BelongsTo
   {
@@ -28,7 +29,14 @@ class Product extends Model
     return $this->belongsTo(Category::class);
   }
 
-  protected function formattedPrice(): Attribute {
+
+  public function reviews(): HasMany
+  {
+    return $this->hasMany(Review::class);
+  }
+
+  protected function formattedPrice(): Attribute
+  {
     return Attribute::make(
       get: fn() => Number::currency($this->price / 100, "USD")
     );
