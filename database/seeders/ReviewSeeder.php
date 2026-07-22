@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Product;
+use App\Models\Review;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +15,12 @@ class ReviewSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+      $userIds = User::pluck('id');
+      $productIds = Product::pluck('id');
+
+      Review::factory(20)->create([
+        'user_id' => fn () => $userIds->random(),
+        'product_id' => fn () => $productIds->random()
+      ]);
     }
 }
