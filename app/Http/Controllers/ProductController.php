@@ -20,7 +20,7 @@ class ProductController extends Controller
 
         $category = Category::where('name', $request->category)->first();
 
-        $products = Product::where('is_active', true)->when($category?->id, fn ($query, $category) => $query->where('category_id', $category))->with('category')->get();
+        $products = Product::where('is_active', true)->when($category?->id, fn ($query, $category) => $query->where('category_id', $category))->with('category')->withAvg('reviews', 'rating')->withCount('reviews')->get();
 
         $categories = Category::all();
 

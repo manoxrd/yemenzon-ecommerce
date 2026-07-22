@@ -18,7 +18,7 @@ class ReviewSeeder extends Seeder
       $userIds = User::pluck('id');
       $productIds = Product::pluck('id');
 
-      Review::factory(20)->create([
+      Review::factory(3000)->create([
         'user_id' => fn () => $userIds->random(),
         'product_id' => fn () => $productIds->random()
       ]);

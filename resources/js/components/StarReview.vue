@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { Star } from '@lucide/vue';
 
-defineProps({
-  variant: String,
-  size: Number,
-});
+defineProps<{
+  variant: string,
+  size: number,
+  avg_reviews: number | null | undefined
+}>();
+
 </script>
 
 <template>
@@ -27,7 +29,7 @@ defineProps({
       />
     </div>
 
-    <span class="font-normal">4.9</span>
+    <span class="font-normal">{{ Number(avg_reviews).toFixed(1) }}</span>
     <span v-if="variant === 'product'">(240 Reviews)</span>
   </div>
 </template>

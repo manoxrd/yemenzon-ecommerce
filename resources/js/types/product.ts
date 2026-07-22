@@ -1,5 +1,6 @@
 import type { User } from './auth';
 import type { Category } from './category';
+import type { Review } from './review';
 
 export interface Product {
   id: number;
@@ -14,4 +15,6 @@ export interface Product {
   user?: User;
   category?: Category;
   formatted_price?: string;
+  reviews?: Review[];
+  reviews_avg_rating?: number;
 }
