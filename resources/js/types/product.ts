@@ -12,5 +12,6 @@ export interface Product {
   stock: number;
   thumbnail_url: string;
   user?: User;
-  category?: Category
+  category?: Category;
+  formatted_price?: string;
 }

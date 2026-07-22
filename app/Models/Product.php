@@ -3,23 +3,34 @@
 namespace App\Models;
 
 use Database\Factories\ProductFactory;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Number;
 
 class Product extends Model
 {
-    /** @use HasFactory<ProductFactory> */
-    use HasFactory;
+  /** @use HasFactory<ProductFactory> */
+  use HasFactory;
 
-    public function user(): BelongsTo
-    {
+  protected $appends = ['formatted_price']; 
 
-        return $this->belongsTo(User::class);
-    }
+  public function user(): BelongsTo
+  {
 
-    public function category(): BelongsTo {
+    return $this->belongsTo(User::class);
+  }
 
-      return $this->belongsTo(Category::class);
-    }
+  public function category(): BelongsTo
+  {
+
+    return $this->belongsTo(Category::class);
+  }
+
+  protected function formattedPrice(): Attribute {
+    return Attribute::make(
+      get: fn() => Number::currency($this->price / 100, "USD")
+    );
+  }
 }

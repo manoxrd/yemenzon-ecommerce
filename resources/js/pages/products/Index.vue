@@ -3,6 +3,7 @@ import { Head } from '@inertiajs/vue3';
 import { router } from "@inertiajs/vue3";
 import { computed } from 'vue';
 import FilteringSidebar from '@/components/products/FilteringSidebar.vue';
+import ProductCard from '@/components/products/ProductCard.vue';
 import SidebarProvider from '@/components/ui/sidebar/SidebarProvider.vue';
 import type { Category, Product } from '@/types';
 
@@ -29,20 +30,15 @@ const onCategorySelected = (category: any) => {
 
   <Head title="Products Catalog" />
 
-  <div class="flex justify-start">
+  <div class="flex min-h-screen justify-start bg-background">
     <SidebarProvider class="w-fit">
       <FilteringSidebar :categories="categories" :currentCategory="currentCategory" @select-category="onCategorySelected" />
     </SidebarProvider>
 
-    <div>
-      
-      <div v-for="product in products" :key="product.id">
-        <h2>{{ product.name }}</h2>
-        <p>{{ product.description }}</p>
-        <span>{{ product.price }}</span>
+    <div class="flex-1 p-6">
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <ProductCard :products="products" />
       </div>
-      <!-- {{ category }} -->
-      <!-- {{ products }} -->
     </div>
   </div>
 </template>
