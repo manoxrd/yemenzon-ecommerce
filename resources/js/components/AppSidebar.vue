@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
-import { Boxes, LayoutGrid } from '@lucide/vue';
+import { Boxes, LayoutGrid, PackagePlus } from '@lucide/vue';
 import AppLogo from '@/components/AppLogo.vue';
 import NavFooter from '@/components/NavFooter.vue';
 import NavMain from '@/components/NavMain.vue';
@@ -16,6 +16,7 @@ import {
 } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes/admin';
 import { index } from '@/routes/admin/products';
+import { create } from '@/routes/admin/products';
 import type { NavItem } from '@/types';
 
 const mainNavItems: NavItem[] = [
@@ -28,6 +29,19 @@ const mainNavItems: NavItem[] = [
     title: 'Products',
     href: index(),
     icon: Boxes,
+    subLinks: [
+
+      {
+        title: 'All Products',
+        href: index(),
+        icon: Boxes
+      },
+      {
+        title: 'Create Product',
+        href: create(),
+        icon: PackagePlus
+      }
+    ]
   },
 ];
 
