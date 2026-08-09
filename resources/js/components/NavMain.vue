@@ -10,13 +10,9 @@ import {
 import { useCurrentUrl } from '@/composables/useCurrentUrl';
 import type { NavItem } from '@/types';
 
-const props = defineProps<{
+defineProps<{
   items: NavItem[];
 }>();
-
-props.items.map((item) => {
-  console.log(item.subLinks)
-})
 
 const { isCurrentOrParentUrl, isCurrentUrl } = useCurrentUrl();
 </script>

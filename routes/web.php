@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\TrashedProductController;
 use App\Http\Controllers\ProductController;
 use App\Http\Middleware\UserHasRole;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,12 @@ Route::middleware(['auth', UserHasRole::class . ':admin'])->prefix('admin')->nam
   Route::post('products', [AdminProductController::class, 'store'])->name('products.store');
 
   Route::delete('products/{product}', [AdminProductController::class, 'destroy'])->name('products.destroy');
+
+  Route::get('products/trash', [TrashedProductController::class, 'index'])->name('products.trash');
+
+  Route::patch('products/trash/{product}', [TrashedProductController::class, 'update'])->name('products.trash.restore');
+
+  Route::delete('products/trash/{product}', [TrashedProductController::class, 'destroy'])->name('products.trash.destroy');
 });
 
 Route::get('products', [ProductController::class, 'index'])->name('products.index');

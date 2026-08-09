@@ -7,7 +7,6 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Category;
 use App\Models\Product;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
@@ -15,7 +14,7 @@ class ProductController extends Controller
 {
   public function index()
   {
-    $products = Product::with('category')->get();
+    $products = Product::with('category:id,name')->get();
 
     return Inertia::render('admin/products/Index', [
       'products' => $products,

@@ -64,7 +64,7 @@ const clear = () => {
             products.last_page }}</p>
         </div>
         <div v-if="products.data.length" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          <ProductCard :products="products.data" />
+          <ProductCard v-for="product in products.data" :key="product.id" :product="product" />
         </div>
         <div v-else class="w-full h-screen text-center pt-25 text-xl font-inter">No Products Match these Filters</div>
         <div class="flex items-center justify-center py-10 gap-x-4">
