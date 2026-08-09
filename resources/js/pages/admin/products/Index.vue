@@ -99,10 +99,8 @@ defineProps<{
                 {{ product.stock }}
               </td>
               <td class="px-4 py-3 text-center">
-                <Link
-                  :href="edit.url(product.id)"
-                  class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300"
-                >
+                <Link :href="edit.url(product.id)"
+                  class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300">
                   Edit
                 </Link>
               </td>

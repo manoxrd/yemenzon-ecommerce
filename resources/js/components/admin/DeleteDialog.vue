@@ -13,9 +13,11 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import Spinner from '../ui/spinner/Spinner.vue';
-const { variant = 'destructive', processing } = defineProps<{
+const { variant = 'destructive', processing, restore = true, model = 'product' } = defineProps<{
   processing?: boolean,
   variant?: ButtonVariants['variant']
+  restore?: boolean
+  model?: string
 }>();
 
 const emit = defineEmits(['onDeleteProduct']);
@@ -56,9 +58,9 @@ const dialogTriggered = (value: boolean) => {
 
       <DialogContent class="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Delete Product</DialogTitle>
+          <DialogTitle>Delete {{ model }}</DialogTitle>
           <DialogDescription>
-            Are you sure you want to delete this product?, you can restore it whenever you want.
+            Are you sure you want to delete this {{ model }}?{{ restore ? ', you can restore it whenever you want.' : '' }}
           </DialogDescription>
         </DialogHeader>
 
