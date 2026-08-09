@@ -1,6 +1,7 @@
 <script setup lang='ts'>
 import { ref } from 'vue';
-import Button from '@/components/ui/button/Button.vue';
+import { Button} from '@/components/ui/button';
+import type { ButtonVariants } from '@/components/ui/button';
 import {
   Dialog,
   DialogClose,
@@ -12,8 +13,9 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import Spinner from '../ui/spinner/Spinner.vue';
-defineProps<{
-  processing: boolean
+const { variant = 'destructive', processing } = defineProps<{
+  processing?: boolean,
+  variant?: ButtonVariants['variant']
 }>();
 
 const emit = defineEmits(['onDeleteProduct']);
@@ -47,7 +49,7 @@ const dialogTriggered = (value: boolean) => {
 
     <Dialog @update:open="dialogTriggered">
       <DialogTrigger as-child>
-        <Button class="cursor-pointer" variant="destructive">
+        <Button class="cursor-pointer" :variant="variant">
           Delete
         </Button>
       </DialogTrigger>
@@ -62,7 +64,7 @@ const dialogTriggered = (value: boolean) => {
 
         <DialogFooter>
           <DialogClose as-child>
-            <Button variant="outline">
+            <Button variant="secondary">
               Cancel
             </Button>
           </DialogClose>

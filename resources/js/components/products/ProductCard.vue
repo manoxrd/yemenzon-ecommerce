@@ -53,7 +53,7 @@ defineProps<{
       </div>
 
       <AddToCart
-        class="w-full rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 transition-colors shadow-xs" />
+        class="w-full rounded-xl transition-colors shadow-xs" />
     </div>
   </div>
 </template>

@@ -2,12 +2,14 @@
 import { Head, Link } from '@inertiajs/vue3';
 import InputError from '@/components/InputError.vue';
 import ProductPrice from '@/components/products/ProductPrice.vue';
+import Button from '@/components/ui/button/Button.vue';
 import Input from '@/components/ui/input/Input.vue';
 import Label from '@/components/ui/label/Label.vue';
 import Separator from '@/components/ui/separator/Separator.vue';
+import { create } from '@/routes/admin/products';
 import { edit } from '@/routes/admin/products';
+import { show } from '@/routes/products';
 import type { Product } from '@/types';
-
 defineOptions({
   layout: {
     breadcrumbs: [
@@ -22,9 +24,11 @@ defineOptions({
 defineProps<{
   products: Product[];
 }>();
+
 </script>
 
 <template>
+
   <Head title="Products"></Head>
 
   <div class="flex flex-col gap-y-6 py-4">
@@ -35,25 +39,26 @@ defineProps<{
         <InputError />
       </div>
 
-      <div>Categories filter</div>
+      <div>
+        <div>Categories filter</div>
+        <div>Stocks filter</div>
+        <div>Sorting Options</div>
+      </div>
 
-      <div>Stocks filter</div>
-
-      <div>Sorting Options</div>
+      <div>
+        <Button>
+          <Link class="" :href="create().url">Create</Link>
+        </Button>
+      </div>
     </div>
 
     <Separator class="mx-2" />
 
     <div class="px-5">
-      <div
-        class="w-full overflow-x-auto rounded-lg border border-gray-200 dark:border-sidebar-border"
-      >
-        <table
-          class="w-full text-left text-sm text-gray-600 dark:text-gray-300"
-        >
+      <div class="w-full overflow-x-auto rounded-lg border border-gray-200 dark:border-sidebar-border">
+        <table class="w-full text-left text-sm text-gray-600 dark:text-gray-300">
           <thead
-            class="border-b border-gray-200 bg-gray-50 text-gray-700 dark:border-sidebar-border dark:bg-sidebar dark:text-gray-200"
-          >
+            class="border-b border-gray-200 bg-gray-50 text-gray-700 dark:border-sidebar-border dark:bg-sidebar dark:text-gray-200">
             <tr>
               <th scope="col" class="w-16 px-4 py-3">
                 <span class="sr-only">Image</span>
@@ -73,22 +78,14 @@ defineProps<{
           </thead>
 
           <tbody>
-            <tr
-              v-for="product in products"
-              :key="product.id"
-              class="border-b border-gray-100 transition-colors last:border-0 hover:bg-gray-50 dark:border-sidebar-border/50 dark:hover:bg-sidebar-accent/50"
-            >
+            <tr v-for="product in products" :key="product.id"
+              class="border-b border-gray-100 transition-colors last:border-0 hover:bg-gray-50 dark:border-sidebar-border/50 dark:hover:bg-sidebar-accent/50">
               <td class="px-4 py-3">
-                <img
-                  src="https://placehold.co/100x100?text=Photo"
-                  alt="Product Image"
-                  class="h-10 w-10 rounded-md border border-gray-200 object-cover dark:border-gray-700"
-                />
+                <img src="https://placehold.co/100x100?text=Photo" alt="Product Image"
+                  class="h-10 w-10 rounded-md border border-gray-200 object-cover dark:border-gray-700" />
               </td>
-              <td
-                class="px-4 py-3 font-medium text-gray-900 dark:text-gray-100"
-              >
-                <Link :href="edit.url(product.id)">
+              <td class="px-4 py-3 font-medium text-gray-900 dark:text-gray-100">
+                <Link :href="show.url(product.slug)">
                   {{ product.name }}
                 </Link>
               </td>
@@ -103,19 +100,16 @@ defineProps<{
               </td>
               <td class="px-4 py-3 text-center">
                 <Link
-                  :href="edit(product.id)"
-                  class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300"
+                  :href="edit.url(product.id)"
+                  class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300"
                 >
-                  Delete
+                  Edit
                 </Link>
               </td>
             </tr>
 
             <tr v-if="products.length === 0">
-              <td
-                colspan="6"
-                class="px-4 py-8 text-center text-gray-500 dark:text-gray-400"
-              >
+              <td colspan="6" class="px-4 py-8 text-center text-gray-500 dark:text-gray-400">
                 No products found.
               </td>
             </tr>

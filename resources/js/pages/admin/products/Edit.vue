@@ -79,7 +79,7 @@ const submit = () => {
       <div class="flex items-center gap-x-3">
         <DeleteDialog @on-delete-product="deleteProduct" :processing="deleteForm.processing" />
 
-        <Button class="cursor-pointer" type="submit" :disabled="form.processing">
+        <Button class="cursor-pointer" type="submit" variant="secondary" :disabled="form.processing">
           <Spinner v-if="form.processing" />
           Save Changes
         </Button>

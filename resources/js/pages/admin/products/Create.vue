@@ -58,7 +58,7 @@ const submit = () => {
 
     <PageHeading title="Create Product">
       <div class="flex items-center gap-x-3">
-        <Button type="button" variant="outline">Discard</Button>
+        <Button type="button" variant="secondary">Discard</Button>
         <Button type="submit" :disabled="form.processing">
           <Spinner v-if="form.processing" />
           Create

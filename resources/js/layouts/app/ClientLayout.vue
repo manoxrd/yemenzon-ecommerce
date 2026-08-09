@@ -8,9 +8,9 @@ import { Toaster } from '@/components/ui/sonner';
 <template>
   <AppShell variant="client">
     <AppClient />
+    <Toaster position="top-center" />
     <AppContent variant="client">
       <slot />
     </AppContent>
-    <Toaster />
   </AppShell>
 </template>
