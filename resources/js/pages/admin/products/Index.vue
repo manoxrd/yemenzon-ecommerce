@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
+import PaginationLinks from '@/components/admin/PaginationLinks.vue';
 import InputError from '@/components/InputError.vue';
 import ProductPrice from '@/components/products/ProductPrice.vue';
 import Button from '@/components/ui/button/Button.vue';
 import Input from '@/components/ui/input/Input.vue';
 import Label from '@/components/ui/label/Label.vue';
-import Separator from '@/components/ui/separator/Separator.vue';
 import { create } from '@/routes/admin/products';
 import { edit } from '@/routes/admin/products';
 import { show } from '@/routes/products';
@@ -22,7 +22,7 @@ defineOptions({
 });
 
 defineProps<{
-  products: Product[];
+  products: { data: Product[]; next_page_url: string; prev_page_url: string; current_page: number; total: number; last_page: number; first_page_url: string; last_page_url: string; links: [] };
 }>();
 
 </script>
@@ -52,7 +52,12 @@ defineProps<{
       </div>
     </div>
 
-    <Separator class="mx-2" />
+    <div class="px-5 flex items-center gap-3">
+          <p class="text-sm text-muted-foreground whitespace-nowrap">{{ products.total }} Products</p>
+          <div class="flex-1 border-t border-border"></div>
+          <p class="text-sm text-muted-foreground whitespace-nowrap">Page {{ products.current_page }} of {{
+            products.last_page }}</p>
+    </div>
 
     <div class="px-5">
       <div class="w-full overflow-x-auto rounded-lg border border-gray-200 dark:border-sidebar-border">
@@ -78,7 +83,7 @@ defineProps<{
           </thead>
 
           <tbody>
-            <tr v-for="product in products" :key="product.id"
+            <tr v-for="product in products.data" :key="product.id"
               class="border-b border-gray-100 transition-colors last:border-0 hover:bg-gray-50 dark:border-sidebar-border/50 dark:hover:bg-sidebar-accent/50">
               <td class="px-4 py-3">
                 <img src="https://placehold.co/100x100?text=Photo" alt="Product Image"
@@ -106,7 +111,7 @@ defineProps<{
               </td>
             </tr>
 
-            <tr v-if="products.length === 0">
+            <tr v-if="products.data.length === 0">
               <td colspan="6" class="px-4 py-8 text-center text-gray-500 dark:text-gray-400">
                 No products found.
               </td>
@@ -114,6 +119,8 @@ defineProps<{
           </tbody>
         </table>
       </div>
+      
+        <PaginationLinks v-if="products.data.length" :next_page_url="products.next_page_url" :prev_page_url="products.prev_page_url" :current_page="products.current_page" :total="products.total" :last_page="products.last_page" :first_page_url="products.first_page_url" :last_page_url="products.last_page_url" :links="products.links" />
     </div>
   </div>
 </template>

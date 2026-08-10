@@ -1,11 +1,8 @@
 <script setup lang="ts">
 import { Head } from '@inertiajs/vue3';
 import { router } from "@inertiajs/vue3";
-import { Link } from '@inertiajs/vue3';
-import { ChevronLeft } from '@lucide/vue';
-import { ChevronRight } from '@lucide/vue';
-import { Ellipsis } from '@lucide/vue';
 import { ref } from 'vue';
+import PaginationLinks from '@/components/admin/PaginationLinks.vue';
 import FilteringSidebar from '@/components/products/FilteringSidebar.vue';
 import ProductCard from '@/components/products/ProductCard.vue';
 import SidebarProvider from '@/components/ui/sidebar/SidebarProvider.vue';
@@ -67,47 +64,8 @@ const clear = () => {
           <ProductCard v-for="product in products.data" :key="product.id" :product="product" />
         </div>
         <div v-else class="w-full h-screen text-center pt-25 text-xl font-inter">No Products Match these Filters</div>
-        <div class="flex items-center justify-center py-10 gap-x-4">
-          <Link :href="products.prev_page_url ?? ''" :class="{
-            'text-muted-foreground opacity-50 pointer-events-none': !products.prev_page_url
-          }
-            ">
-            <ChevronLeft />
-          </Link>
 
-          <Link v-if="products.current_page > 1" :href="products.first_page_url"
-            class="flex items-center justify-center">
-            1</Link>
-
-          <p v-if="products.current_page > 2" class="text-muted-foreground">
-            <Ellipsis :size="18" />
-          </p>
-
-          <Link v-if="products.current_page > 2" :href="products.links[products.current_page - 1]['url']">{{
-            products.current_page - 1 }}</Link>
-
-          <div class="flex bg-accent size-8 rounded-full items-center justify-center">{{ products.current_page }}</div>
-
-
-          <Link v-if="products.current_page < products.last_page"
-            :href="products.links[products.current_page + 1]['url']">{{
-              products.current_page + 1 }}</Link>
-
-          <p v-if="products.current_page < products.last_page - 1" class="text-muted-foreground">
-            <Ellipsis :size="18" />
-          </p>
-
-          <Link v-if="products.current_page < products.last_page - 1" :href="products.last_page_url"
-            class="flex items-center justify-center">
-            {{ products.last_page }}</Link>
-
-          <Link :href="products.next_page_url ?? ''" :class="{
-            'text-muted-foreground opacity-50 pointer-events-none': !products.next_page_url
-          }
-            ">
-            <ChevronRight />
-          </Link>
-        </div>
+        <PaginationLinks v-if="products.data.length" :next_page_url="products.next_page_url" :prev_page_url="products.prev_page_url" :current_page="products.current_page" :total="products.total" :last_page="products.last_page" :first_page_url="products.first_page_url" :last_page_url="products.last_page_url" :links="products.links" />
       </div>
     </SidebarProvider>
   </div>

@@ -14,7 +14,7 @@ class ProductController extends Controller
 {
   public function index()
   {
-    $products = Product::with('category:id,name')->get();
+    $products = Product::with('category:id,name')->paginate(10)->withQueryString();
 
     return Inertia::render('admin/products/Index', [
       'products' => $products,
